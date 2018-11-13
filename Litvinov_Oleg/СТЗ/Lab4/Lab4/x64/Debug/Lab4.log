@@ -1,0 +1,11 @@
+﻿  Source.cpp
+c:\users\oleg\documents\sourcetree\стз\lab4\lab4\source.cpp(77): warning C4244: =: преобразование "_Ty" в "_Tp", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Tp=float
+          ]
+  Lab4.vcxproj -> C:\Users\Oleg\Documents\SourceTree\СТЗ\Lab4\x64\Debug\Lab4.exe
