@@ -1,0 +1,15 @@
+﻿Build started 27.09.2018 9:20:18.
+     1>Project "C:\Users\Oleg\documents\visual studio 2013\Projects\Project1\Project1\Project1.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         E:\Programs\VS13\VC\bin\x86_amd64\CL.exe /c /IE:\Programs\OpenCV\opencv\build\include /Zi /nologo /W1 /WX- /O2 /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug64\\" /Fd"x64\Debug64\vc120.pdb" /Gd /TP /errorReport:prompt Source.cpp
+         Source.cpp
+     1>c:\users\oleg\documents\visual studio 2013\projects\project1\project1\source.cpp(140): warning C4715: 'tank_choosing' : not all control paths return a value
+     1>c:\users\oleg\documents\visual studio 2013\projects\project1\project1\source.cpp(108): warning C4715: 'field_choosing' : not all control paths return a value
+       Link:
+         E:\Programs\VS13\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Oleg\documents\visual studio 2013\Projects\Project1\x64\Debug64\Project1.exe" /NOLOGO /LIBPATH:E:\Programs\OpenCV\opencv\build\x64\vc12\lib opencv_world300d.lib opencv_ts300d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:"C:\Users\Oleg\documents\visual studio 2013\Projects\Project1\x64\Debug64\Project1.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Oleg\documents\visual studio 2013\Projects\Project1\x64\Debug64\Project1.lib" /MACHINE:X64 x64\Debug64\Source.obj
+         Project1.vcxproj -> C:\Users\Oleg\documents\visual studio 2013\Projects\Project1\x64\Debug64\Project1.exe
+     1>Done Building Project "C:\Users\Oleg\documents\visual studio 2013\Projects\Project1\Project1\Project1.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.51

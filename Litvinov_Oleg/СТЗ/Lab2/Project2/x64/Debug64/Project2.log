@@ -1,0 +1,13 @@
+﻿Build started 04.10.2018 13:13:58.
+     1>Project "C:\Users\Oleg\documents\visual studio 2013\Projects\Project2\Project2\Project2.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         E:\Programs\VS13\VC\bin\x86_amd64\CL.exe /c /IE:\Programs\OpenCV\opencv\build\include /Zi /nologo /W1 /WX- /O2 /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug64\\" /Fd"x64\Debug64\vc120.pdb" /Gd /TP /errorReport:prompt Source.cpp
+         Source.cpp
+       Link:
+         E:\Programs\VS13\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Oleg\documents\visual studio 2013\Projects\Project2\x64\Debug64\Project2.exe" /NOLOGO /LIBPATH:E:\Programs\OpenCV\opencv\build\x64\vc12\lib opencv_ts300d.lib opencv_world300d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Oleg\documents\visual studio 2013\Projects\Project2\x64\Debug64\Project2.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Oleg\documents\visual studio 2013\Projects\Project2\x64\Debug64\Project2.lib" /MACHINE:X64 x64\Debug64\Source.obj
+         Project2.vcxproj -> C:\Users\Oleg\documents\visual studio 2013\Projects\Project2\x64\Debug64\Project2.exe
+     1>Done Building Project "C:\Users\Oleg\documents\visual studio 2013\Projects\Project2\Project2\Project2.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:03.46
