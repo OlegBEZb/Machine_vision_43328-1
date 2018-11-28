@@ -24,6 +24,9 @@ public:
 	int Value_down;
 	int Value_up;
 
+	//dilate and erode kernel
+	int kernel_size=5;
+
 	//min and max points for contour
 	int min_points_cnt = 70;
 	int max_points_cnt = 167;
@@ -83,14 +86,18 @@ public:
 };
 
 void Trackbar_Callback(int pos, void* userdata);
-void show_target(Mat &img, int Hue_down, int Hue_up, int Saturation_down, int Saturation_up, int Value_down, int Value_up, int min_points_cnt, int max_points_cnt, string str);
+void show_target(int kernel_size, Mat &img, int Hue_down, int Hue_up, int Saturation_down, int Saturation_up, int Value_down, int Value_up, int min_points_cnt, int max_points_cnt, string str);
 int distance(int X1, int Y1, int X2, int  Y2);
+Mat selecting_robots(Mat &img, Mat &target,
+	int Hue_down, int Hue_up, int Saturation_down, int Saturation_up, int Value_down, int Value_up,
+	int min_points_cnt, int max_points_cnt, int kernel_size, int Xlamp, int Ylamp,
+	Scalar colour);
 
 int main(int argc, char** argv)
 {
 	Mat *imgs = new Mat[2];
-	imgs[0] = imread("roi_robotov.jpg");
-	imgs[1] = imread("roi_robotov_1.jpg");
+	imgs[0] = imread("roi_robotov.jpg");//0
+	imgs[1] = imread("roi_robotov_1.jpg");//1
 
 	Swarm_with_thresholds *enemy_vehicles = new Swarm_with_thresholds(imgs, 0, 13, 35, 255, 0, 245);
 	enemy_vehicles->convert_rgb2hsv();
@@ -102,8 +109,9 @@ int main(int argc, char** argv)
 	createTrackbar("Saturation up", "Threshold window", &(enemy_vehicles->Saturation_up), 255, Trackbar_Callback, enemy_vehicles);
 	createTrackbar("Value down", "Threshold window", &(enemy_vehicles->Value_down), 255, Trackbar_Callback, enemy_vehicles);
 	createTrackbar("Value up", "Threshold window", &(enemy_vehicles->Value_up), 255, Trackbar_Callback, enemy_vehicles);
-	createTrackbar("min points ", "Threshold window", &(enemy_vehicles->min_points_cnt), 300, Trackbar_Callback, enemy_vehicles);
+	//createTrackbar("min points ", "Threshold window", &(enemy_vehicles->min_points_cnt), 300, Trackbar_Callback, enemy_vehicles);
 	//createTrackbar("max points ", "Threshold window", &(enemy_vehicles->max_points_cnt), 300, Trackbar_Callback, enemy_vehicles);
+	//createTrackbar("kernel size ", "Threshold window", &(enemy_vehicles->kernel_size), 15, Trackbar_Callback, enemy_vehicles);
 
 	waitKey(0);
 	return 0;
@@ -125,7 +133,7 @@ void Trackbar_Callback(int pos, void* userdata)
 
 	for (int i = 0; i < 2; i++)
 	{
-		show_target(swarm_with_thresholds->img[i],
+		show_target(swarm_with_thresholds->kernel_size, swarm_with_thresholds->img[i],
 			swarm_with_thresholds->Hue_down, swarm_with_thresholds->Hue_up,
 			swarm_with_thresholds->Saturation_down, swarm_with_thresholds->Saturation_up,
 			swarm_with_thresholds->Value_down, swarm_with_thresholds->Value_up,
@@ -134,10 +142,9 @@ void Trackbar_Callback(int pos, void* userdata)
 	}
 }
 
-void show_target(Mat &img, int Hue_down, int Hue_up, int Saturation_down, int Saturation_up, int Value_down, int Value_up, int min_points_cnt, int max_points_cnt, string str)
+void show_target(int kernel_size, Mat &img, int Hue_down, int Hue_up, int Saturation_down, int Saturation_up, int Value_down, int Value_up, int min_points_cnt, int max_points_cnt, string str)
 {
 	Mat target = img.clone();
-
 
 	//Selecting lamp and finding center point
 	Mat lamp_pixels;
@@ -160,115 +167,20 @@ void show_target(Mat &img, int Hue_down, int Hue_up, int Saturation_down, int Sa
 	}
 
 
-	//Selecting robots and finding the nearest of each colour
-	Mat blue_pixels;
-	inRange(img, Vec3b(90, 0, 0), Vec3b(107, 255, 255), blue_pixels);
-	dilate(blue_pixels, blue_pixels, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)), Point(-1, -1), 1);
-	erode(blue_pixels, blue_pixels, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)), Point(-1, -1), 1);
-	vector<vector<Point>> blue_cnts;
-	findContours(blue_pixels.clone(), blue_cnts, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
-	int min_blue_dist, Xblue, Yblue;
-	for (int i = 0; i < blue_cnts.size(); i++)
-	{
-		if (blue_cnts[i].size() < 70)
-		{
-			//blue_cnts.erase(blue_cnts[i]);//убрать вектора с малым колвом точек
-			blue_cnts.erase (blue_cnts.begin()+i);
-			i--;
-		}
-		else
-		{
-			Moments mnts = moments(blue_cnts[i]);
-			double m00 = mnts.m00;
-			double m01 = mnts.m01;
-			double m10 = mnts.m10;
-			int Xc = int(m10 / m00);
-			int Yc = int(m01 / m00);
-			int dist = distance(Xc, Yc, Xlamp, Ylamp);
-			if ((i == 0) || (dist < min_blue_dist))
-			{
-				min_blue_dist = dist;
-				Xblue = Xc;
-				Yblue = Yc;
-			}
-		}
-	}
-	circle(target, { Xblue, Yblue }, 5, Scalar(120, 255, 255), -1);
-	drawContours(target, blue_cnts, -1, Scalar(120, 255, 255), 2);
-
-
-	//Selecting red robots
-	Mat red_pixels;
-	//inRange(img, Vec3b(Hue_down, Saturation_down, Value_down), Vec3b(Hue_up, Saturation_up, Value_up), red_pixels); for debug
-	inRange(img, Vec3b(0, 35, 0), Vec3b(13, 255, 245), red_pixels);
-	dilate(red_pixels, red_pixels, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)), Point(-1, -1), 1);
-	erode(red_pixels, red_pixels, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)), Point(-1, -1), 1);
-	imshow("after both " + str, red_pixels);
-	vector<vector<Point>> red_cnts;
-	findContours(red_pixels.clone(), red_cnts, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
-	int min_red_dist, Xred, Yred;
-	for (int i = 0; i < red_cnts.size(); i++)
-	{
-		if ((red_cnts[i].size() < 167) && (red_cnts[i].size() > min_points_cnt))
-		{
-			Moments mnts = moments(red_cnts[i]);
-			double m00 = mnts.m00;
-			double m01 = mnts.m01;
-			double m10 = mnts.m10;
-			int Xc = int(m10 / m00);
-			int Yc = int(m01 / m00);
-			int dist = distance(Xc, Yc, Xlamp, Ylamp);
-			if ((i == 0) || (dist < min_red_dist))
-			{
-				min_red_dist = dist;
-				Xred = Xc;
-				Yred = Yc;
-			}
-		}
-		else
-		{
-			red_cnts.erase(red_cnts.begin() + i);
-			i--;
-		}
-	}
-	circle(target, { Xred, Yred }, 5, Scalar(0, 255, 255), -1);
-	drawContours(target, red_cnts, -1, Scalar(0, 255, 255), 2);
-
-
-	//Selecting green robots
-	Mat green_pixels;
-	inRange(img, Vec3b(54, 59, 143), Vec3b(82, 166, 255), green_pixels);
-	dilate(green_pixels, green_pixels, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)), Point(-1, -1), 1);
-	erode(green_pixels, green_pixels, getStructuringElement(MORPH_ELLIPSE, Size(5, 5)), Point(-1, -1), 1);
-	vector<vector<Point>> green_cnts;
-	findContours(green_pixels.clone(), green_cnts, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
-	int min_green_dist, Xgreen, Ygreen;
-	for (int i = 0; i < green_cnts.size(); i++)
-	{
-		if (green_cnts[i].size() > 49)
-		{
-			Moments mnts = moments(green_cnts[i]);
-			double m00 = mnts.m00;
-			double m01 = mnts.m01;
-			double m10 = mnts.m10;
-			int Xc = int(m10 / m00);
-			int Yc = int(m01 / m00);
-			int dist = distance(Xc, Yc, Xlamp, Ylamp);
-			if ((i == 0) || (dist < min_green_dist))
-			{
-				min_green_dist = dist;
-				Xgreen = Xc;
-				Ygreen = Yc;
-			}
-		}
-		else
-		{
-			green_cnts.erase(green_cnts.begin() + i);
-			i--;
-		}
-	}
-	circle(target, { Xgreen, Ygreen }, 5, Scalar(60, 255, 255), -1);
-	drawContours(target, green_cnts, -1, Scalar(60, 255, 255), 2);
+	//Selecting blue robots and finding the nearest of them to the lamp
+	target = selecting_robots(img, target,
+		90, 107, 0, 255, 0, 255,
+		70, 500, kernel_size, Xlamp, Ylamp, Scalar(120, 255, 255));	
+	
+	//Selecting red robots and finding the nearest of them to the lamp
+	target = selecting_robots(img, target,
+		Hue_down, Hue_up, Saturation_down, Saturation_up, Value_down, Value_up,
+		70, 167, kernel_size, Xlamp, Ylamp, Scalar(0, 255, 255));
+	
+	//Selecting green robots and finding the nearest of them to the lamp
+	target = selecting_robots(img, target,
+		54, 82, 59, 166, 143, 255,
+		49, 500, kernel_size, Xlamp, Ylamp, Scalar(60, 255, 255));
 
 
 	cvtColor(target, target, CV_HSV2BGR);//потом закинуть это под конец перед отрисовкой точек и контуров
@@ -278,4 +190,123 @@ void show_target(Mat &img, int Hue_down, int Hue_up, int Saturation_down, int Sa
 int distance(int X1, int Y1, int X2, int  Y2)
 {
 	return int(sqrt(pow((X1 - X2), 2) + pow((Y1 - Y2), 2)));
+}
+
+Mat selecting_robots(Mat &img, Mat &target,
+	int Hue_down, int Hue_up, int Saturation_down, int Saturation_up, int Value_down, int Value_up, 
+	int min_points_cnt, int max_points_cnt, int kernel_size, int Xlamp, int Ylamp,
+	Scalar colour)
+{
+	Mat colour_pixels;
+	inRange(img, Vec3b(Hue_down, Saturation_down, Value_down), Vec3b(Hue_up, Saturation_up, Value_up), colour_pixels);
+	dilate(colour_pixels, colour_pixels, getStructuringElement(MORPH_ELLIPSE, Size(kernel_size, kernel_size)), Point(-1, -1), 1);
+	erode(colour_pixels, colour_pixels, getStructuringElement(MORPH_ELLIPSE, Size(kernel_size, kernel_size)), Point(-1, -1), 1);
+	if (colour == Scalar(0, 255, 255))
+	{
+		//Mat imrow = colour_pixels.row(i);
+		bool flag_begin = 0;
+		int counter = 0;
+		int min = 10;
+		int max = 20;
+		for (int j = 0; j < colour_pixels.cols; j++)
+		{
+			counter += flag_begin * (1);
+			if (colour_pixels.at<uchar>(colour_pixels.rows-1, j) == 255)
+			{
+				if (flag_begin == 0)
+				{
+					flag_begin = 1;
+					counter = 0;
+				}
+				else
+				{
+					if ((counter > min) && (counter < max))
+					{
+						//imshow("selection before", colour_pixels.row(i));
+						for (int k = counter; k > 0; k--)
+						{
+							colour_pixels.at<uchar>(colour_pixels.rows-1, j - k) = 255;
+						}
+						//imshow("selection after", colour_pixels.row(i));
+					}
+					else
+					{
+						flag_begin = 1;
+						counter = 0;
+					}
+				}
+			}
+		}
+	}
+	if (colour == Scalar(120, 255, 255))
+	{
+		for (int i = 0; i < colour_pixels.rows; i++)
+		{
+			//Mat imrow = colour_pixels.row(i);
+			bool flag_begin = 0;
+			int counter = 0;
+			int min = 10;
+			int max = 20;
+			for (int j = 0; j < colour_pixels.cols; j++)
+			{
+				counter += flag_begin * (1);
+				if (colour_pixels.at<uchar>(i, j) == 255)
+				{
+					if (flag_begin == 0)
+					{
+						flag_begin = 1;
+						counter = 0;
+					}
+					else
+					{
+						if ((counter > min) && (counter < max))
+						{
+							//imshow("selection before", colour_pixels.row(i));
+							for (int k = counter; k > 0; k--)
+							{
+								colour_pixels.at<uchar>(i, j - k) = 255;
+							}
+							//imshow("selection after", colour_pixels.row(i));
+						}
+						else
+						{
+							flag_begin = 1;
+							counter = 0;
+						}
+					}
+				}
+			}
+		}
+	}
+	imshow("after", colour_pixels);
+	vector<vector<Point>> colour_cnts;
+	findContours(colour_pixels.clone(), colour_cnts, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+	int min_red_dist, Xcolour=0, Ycolour=0;
+	for (int i = 0; i < colour_cnts.size(); i++)
+	{
+		if ((colour_cnts[i].size() < max_points_cnt) && (colour_cnts[i].size() > min_points_cnt))
+		{
+			Moments mnts = moments(colour_cnts[i]);
+			double m00 = mnts.m00;
+			double m01 = mnts.m01;
+			double m10 = mnts.m10;
+			int Xc = int(m10 / m00);
+			int Yc = int(m01 / m00);
+			int dist = distance(Xc, Yc, Xlamp, Ylamp);
+			if ((i == 0) || (dist < min_red_dist))
+			{
+				min_red_dist = dist;
+				Xcolour = Xc;
+				Ycolour = Yc;
+			}
+		}
+		else
+		{
+			colour_cnts.erase(colour_cnts.begin() + i);
+			i--;
+		}
+	}
+	circle(target, { Xcolour, Ycolour }, 5, colour, -1);
+	drawContours(target, colour_cnts, -1, colour, 2);
+	return target;
 }
