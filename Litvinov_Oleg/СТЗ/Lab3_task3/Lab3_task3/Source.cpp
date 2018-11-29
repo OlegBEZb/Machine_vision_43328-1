@@ -201,6 +201,7 @@ Mat selecting_robots(Mat &img, Mat &target,
 	inRange(img, Vec3b(Hue_down, Saturation_down, Value_down), Vec3b(Hue_up, Saturation_up, Value_up), colour_pixels);
 	dilate(colour_pixels, colour_pixels, getStructuringElement(MORPH_ELLIPSE, Size(kernel_size, kernel_size)), Point(-1, -1), 1);
 	erode(colour_pixels, colour_pixels, getStructuringElement(MORPH_ELLIPSE, Size(kernel_size, kernel_size)), Point(-1, -1), 1);
+	//Furious crutch for red robot. Draws a line in the lowest row to make cntr closed
 	if (colour == Scalar(0, 255, 255))
 	{
 		//Mat imrow = colour_pixels.row(i);
@@ -238,6 +239,7 @@ Mat selecting_robots(Mat &img, Mat &target,
 			}
 		}
 	}
+	//Crutch for blue robot to collect it from two halfs. Find lines of colour_pixels with a gap of 10-20 pixels
 	if (colour == Scalar(120, 255, 255))
 	{
 		for (int i = 0; i < colour_pixels.rows; i++)
