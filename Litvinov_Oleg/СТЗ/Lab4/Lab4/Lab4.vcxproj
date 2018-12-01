@@ -86,10 +86,10 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>D:\Programs\IDE_and_for_programming\opencv\build\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>E:\Programs\OpenCV\opencv\build\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>D:\Programs\IDE_and_for_programming\opencv\build\x64\vc15\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\Programs\OpenCV\opencv\build\x64\vc15\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_world341d.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
