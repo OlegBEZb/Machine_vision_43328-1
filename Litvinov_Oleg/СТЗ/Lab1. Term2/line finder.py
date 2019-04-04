@@ -9,7 +9,7 @@ video_num = 1
 video = cv2.VideoCapture('Video/' + str(video_num) + '.avi')
 frame = video.read()[1]
 
-num_of_frames = 1
+num_of_frames = 5
 shift_btw_frames = 100
 # therefore in this work will be processed frames 101, 201, ..., 501
 
@@ -50,7 +50,7 @@ for i in range(num_of_frames):
     #cv2.inRange(src=orig, lowerb=(bl, gl, rl), upperb=(bu, gu, ru), dst=binar)
     cv2.inRange(src=img_blurred, lowerb=(bl, gl, rl), upperb=(bu, gu, ru), 
                 dst=img_bin)
-    cv2.imshow('binarization fr' + str(i) + '_video' + str(video_num), img_bin)
+    #cv2.imshow('binarization fr' + str(i) + '_video' + str(video_num), img_bin)
     
 
     cv2.dilate(img_bin, (5, 5), img_bin)
@@ -59,7 +59,7 @@ for i in range(num_of_frames):
     cv2.dilate(img_bin, (5, 5), img_bin)
     cv2.dilate(img_bin, (5, 5), img_bin)
     cv2.dilate(img_bin, (5, 5), img_bin)
-    cv2.imshow('erode and dilate fr' + str(i) + '_video' + str(video_num), img_bin)
+    #cv2.imshow('erode and dilate fr' + str(i) + '_video' + str(video_num), img_bin)
 
     # 255 -> 1, another -> 0
     img_bin = img_bin // 255
@@ -70,18 +70,18 @@ for i in range(num_of_frames):
 #    cv2.imwrite('Frames/skelet_'+ 'video' + str(video_num) + '_fr' + str(i) + '.png',
 #                img_skeletized)
     
-    # TODO: rename to skeletized_image
+
     img_skeletized = cv2.imread('Frames/skelet' + 'video' + str(video_num) + '_fr' + str(i) + '.png', 
                               cv2.IMREAD_GRAYSCALE)
-    # Так как мы бинаризовали изображение выставляя светлым пикслям 1, 
-    # для корректного отображения, мы домнажаем на 255
+
+    # back 1 -> 255, 0 -> 0
     img_skeletized *= 255
     cv2.imshow('skeletonization fr' + str(i) + '_video' + str(video_num), 
                img_skeletized)
     
-    cv2.waitKey(0)
-    
-    connectLines(img_skeletized, frame, img_skeletized)
+    frame_with_path = connectLines(img_skeletized, frame)
+    cv2.imshow('with_path fr' + str(i) + '_video' + str(video_num), 
+               frame_with_path)
     cv2.waitKey(0)
     
 

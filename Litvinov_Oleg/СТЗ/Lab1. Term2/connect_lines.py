@@ -34,8 +34,9 @@ def minDist(lines, line):
     return
 
 
-def connectLines(skelet, original, binar):
+def connectLines(img_skeletized, original):
     # TODO: сделать вторую точку всегда ниже первой, чтобы цифры расставлялись норм
+    
     # 	Ищем линии
     cv2.createTrackbar('th', 'main', 55, 255, nothing)
     cv2.createTrackbar('rho', 'main', 1, 255, nothing)
@@ -44,7 +45,7 @@ def connectLines(skelet, original, binar):
     cv2.createTrackbar('maxgap', 'main', 80, 255, nothing)
 
     #while True:
-    new_img = np.copy(original)
+    original_with_path = np.copy(original)
 
     th = cv2.getTrackbarPos('th', 'main')
     rho = cv2.getTrackbarPos('rho', 'main')
@@ -52,64 +53,45 @@ def connectLines(skelet, original, binar):
     minlen = cv2.getTrackbarPos('minlen', 'main')
     maxgap = cv2.getTrackbarPos('maxgap', 'main')
     
-    skeletLines = cv2.HoughLinesP(skelet,
-                            threshold=th,
-                            rho=rho,
-                            theta=theta/360,
-                            minLineLength=minlen,
-                            maxLineGap=maxgap)
+    # Find line segments in a binary image using the probabilistic Hough transform.
+    # Each line is represented by a 4-element vector  (x_1, y_1, x_2, y_2) , 
+    # where  (x_1,y_1) and  (x_2, y_2) are the ending points of each detected 
+    # line segment.
+    skel = img_skeletized.copy()
+    lines = cv2.HoughLinesP(image=img_skeletized, threshold=th, rho=rho, 
+                                  theta=theta/360, minLineLength=minlen, 
+                                  maxLineGap=maxgap)
 
-    skel = skelet
-    cv2.subtract(binar, skelet, skel)
+    # convert lines into python list format
+    lines = lines.tolist()
+    # get rid of [[]]
+    for i, double_brackets_list in enumerate(lines):
+        lines[i] = [item for sublist in double_brackets_list for item in sublist]
+        
+    print('fresh handled lines', lines)
+    
+    lines.sort(key = lambda lines: max(lines[1], lines[3]), reverse=True) 
+    
+    print('\n sorted external', lines)
 
-    cv2.imshow('skel', skel)
-    #  КОСТЫЛЬ
-    # отсортированный массив линий
-    points = []
-    min_index_y = 0
-    using_index = set()
-    for i in range(len(skeletLines)):
-        if skeletLines[min_index_y][0][3] < skeletLines[i][0][3]:
-            min_index_y = i
-    using_index.add(min_index_y)
-    points.append(skeletLines[min_index_y])
 
-    min_index_y = 0
-    max_y = 0
-    for i in range(len(skeletLines)):
-        if max_y < skeletLines[i][0][3] and i not in using_index:
-            min_index_y = i
-            max_y = skeletLines[i][0][3]
-    using_index.add(min_index_y)
-    minDist(points, skeletLines[min_index_y])
+    for i, line in enumerate(lines):
+        if ( (i == 0) and (line[1] < line[3]) ) or \
+           ((line[0] - lines[i-1][2]) ** 2 + (line[1] - lines[i-1][3]) ** 2 > \
+            (line[2] - lines[i-1][2]) ** 2 + (line[3] - lines[i-1][3]) ** 2):
+            # swap points
+            line[0], line[2] = line[2], line[0]
+            line[1], line[3] = line[3], line[1]
+        else:
+            continue
 
-    # sorted(lines, key=[i][0][3])
-    min_index_y = 3
-    max_y = 0
-    for i in range(len(skeletLines)):
-        if max_y < skeletLines[i][0][3] and i not in using_index:
-            min_index_y = i
-            max_y = skeletLines[i][0][3]
-    using_index.add(min_index_y)
-    minDist(points, skeletLines[min_index_y])
+    print('\n sorted internal', lines)
 
-    min_index_y = 2
-    max_y = 0
-    for i in range(len(skeletLines)):
-        if max_y < skeletLines[i][0][3] and i not in using_index:
-            min_index_y = i
-            max_y = skeletLines[i][0][3]
-    using_index.add(min_index_y)
-    minDist(points, skeletLines[min_index_y])
-
-    i = 0
-    for line in points:
-        for x1, y1, x2, y2 in line:
-            cv2.putText(new_img, str(i), (x2, y2), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            cv2.line(new_img, (x1, y1), (x2, y2), (0, 255, 0), 1)
-            cv2.line(binar, (x1, y1), (x2, y2), 100, 1)
-            i += 1
-
-    cv2.imshow('binar', binar)
-    cv2.imshow('new', new_img)
-    cv2.waitKey(2)
+    
+    for i, line in enumerate(lines):
+            cv2.line(original_with_path, (line[0], line[1]), (line[2], line[3]), (0, 255, 0), 1)
+            cv2.putText(original_with_path, str(i), (line[0], line[1] - 20), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+            if (i != 0):
+                cv2.line(original_with_path, (line[0], line[1]), (lines[i-1][2], lines[i-1][3]), (0, 255, 0), 1)    
+            
+    return original_with_path
