@@ -1,5 +1,5 @@
 ﻿  Source.cpp
-c:\users\oleg\documents\sourcetree\стз\lab4\lab4\source.cpp(77): warning C4244: =: преобразование "_Ty" в "_Tp", возможна потеря данных
+c:\users\oleg\documents\sourcetree\machine_vision_43328-1\litvinov_oleg\стз\lab4\lab4\source.cpp(347): warning C4244: =: преобразование "_Ty" в "_Tp", возможна потеря данных
           with
           [
               _Ty=double
@@ -8,4 +8,13 @@ c:\users\oleg\documents\sourcetree\стз\lab4\lab4\source.cpp(77): warning C424
           [
               _Tp=float
           ]
-  Lab4.vcxproj -> C:\Users\Oleg\Documents\SourceTree\СТЗ\Lab4\x64\Debug\Lab4.exe
+c:\users\oleg\documents\sourcetree\machine_vision_43328-1\litvinov_oleg\стз\lab4\lab4\source.cpp(399): warning C4244: =: преобразование "_Ty" в "_Tp", возможна потеря данных
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Tp=uchar
+          ]
+  Lab4.vcxproj -> C:\Users\Oleg\Documents\SourceTree\Machine_vision_43328-1\Litvinov_Oleg\СТЗ\Lab4\x64\Debug\Lab4.exe

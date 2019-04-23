@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="366c1323-1109-4a0b-8e1d-d1bc68dcecf6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/.vs/Lab3_task3/v15/.suo" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/.vs/Lab3_task3/v15/.suo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/.vs/Lab3_task3/v15/Browse.VC.db" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/.vs/Lab3_task3/v15/Browse.VC.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Lab3_task3.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Source.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/Source.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/vc141.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/vc141.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/vc141.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/Lab3_task3/x64/Debug/vc141.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/x64/Debug/Lab3_task3.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/x64/Debug/Lab3_task3.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/x64/Debug/Lab3_task3.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/x64/Debug/Lab3_task3.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab3_task3/x64/Debug/Lab3_task3.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab3_task3/x64/Debug/Lab3_task3.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/Fourier.png" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/Fourier.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/Lab4.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/Lab4.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/Source.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/Source.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/CL.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/CL.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/Lab4.lastbuildstate" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/Lab4.lastbuildstate" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/link.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/link.write.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Lab4.tlog/link.write.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Source.obj" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/Source.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/vc141.idb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/vc141.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/vc141.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/Lab4/x64/Debug/vc141.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/x64/Debug/Lab4.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/x64/Debug/Lab4.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/x64/Debug/Lab4.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/x64/Debug/Lab4.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lab4/x64/Debug/Lab4.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../Lab4/x64/Debug/Lab4.pdb" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Lab7.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="240" />
+    <option name="y" value="126" />
+    <option name="width" value="1440" />
+    <option name="height" value="775" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Lab3. Term2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Lab3. Term2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Lab3. Term2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="366c1323-1109-4a0b-8e1d-d1bc68dcecf6" name="Default Changelist" comment="" />
+      <created>1555532745761</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1555532745761</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18428005" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Lab6.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab7.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
